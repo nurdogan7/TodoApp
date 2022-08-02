@@ -18,8 +18,23 @@
                     <div class="card-header">
                         Todo App
                     </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" name="txtTaskName" id="txtTaskName" class="form-control">
+                                <button type="submit" class="btn btn-primary" id="btnAddNewTask">
+                                    Ekle
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="card mt-3">
+                    <div class="card-header">
+                        <button id="btnClear" class="btn-danger btn-sm float-end">
+                            Temizle
+                        </button>
+                    </div>
                     <ul id="task-list" class="list-group list-group-flush">
                         <!-- <li class="task list-group-item">
                             <div class="form-check">
@@ -70,19 +85,42 @@
         {"id": 4, "gorevAdi": "Görev 4"}];
 
         ul = document.getElementById("task-list");
-        // let count = ul.children.length;
 
         for(let gorev of gorevListesi) {
              let li = `
                        <li class="task list-group-item">
                             <div class="form-check">
-                                <input type="check-box" id="${gorev.id}" class="form-check-input">
+                                <input type="checkbox" id="${gorev.id}" class="form-check-input">
                                 <label for="${gorev.id}" class="form-check-label">${gorev.gorevAdi}</label>
                             </div>
                         </li>
          `;
           ul.insertAdjacentHTML("beforeend", li);
         }
+
+        // document.querySelector("#btnClear").addEventListener("click", function(event) {
+        //             console.log("click event: clear");
+
+        //             event.preventDefault();
+        //         });
+       document.querySelector("#btnAddNewTask").addEventListener("click", newTask );
+
+        function newTask(event) {
+            // console.log(event.target);
+            // event.target.classList.add("btn-lg")
+            let taskInput = document.querySelector("#txtTaskName");
+            
+            let li = `
+                       <li class="task list-group-item">
+                            <div class="form-check">
+                                <input type="checkbox" id="${gorev.id}" class="form-check-input">
+                                <label for="${gorev.id}" class="form-check-label">${taskInput.value}</label>
+                            </div>
+                        </li>
+         `;
+          event.preventDefault();}
+
+    //    sonuc =  document.querySelector("#task-list").children[0].remove();
 
         
         // document.querySelector("#task-list").parentElement.remove();
